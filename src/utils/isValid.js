@@ -4,7 +4,15 @@ export const inputValidate = async (command, data) => {
     data.length === 0
   ) {
     return true;
-  } else if (["cd"].some((elem) => elem === command) && data.length === 1) {
+  } else if (
+    ["cd", "cat", "add", "rm"].some((elem) => elem === command) &&
+    data.length === 1
+  ) {
+    return true;
+  } else if (
+    ["rn", "cp", "mv"].some((elem) => elem === command) &&
+    data.length === 2
+  ) {
     return true;
   } else {
     return false;
