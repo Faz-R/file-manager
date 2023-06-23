@@ -1,4 +1,3 @@
-import { createReadStream, createWriteStream } from "fs";
 import { operationError } from "./messages.js";
 import { rm } from "fs/promises";
 import { resolve } from "path";

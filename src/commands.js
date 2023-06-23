@@ -8,6 +8,10 @@ import { renameFile } from "./utils/renameFile.js";
 import { copyFile } from "./utils/copyFile.js";
 import { moveFile } from "./utils/moveFile.js";
 import { removeFile } from "./utils/removeFile.js";
+import { systemSwitcher } from "./utils/systemSwitcher.js";
+import { hashFile } from "./utils/hashFile.js";
+import { compressFile } from "./utils/compressFile.js";
+import { decompressFile } from "./utils/decompressFile.js";
 
 export const commandsSwitcher = async (line) => {
   let [command, ...data] = line
@@ -19,9 +23,6 @@ export const commandsSwitcher = async (line) => {
 
   if (isValidate) {
     switch (command) {
-      case ".exit":
-        process.exit();
-        break;
       case "up":
         process.chdir("..");
         break;
@@ -49,10 +50,24 @@ export const commandsSwitcher = async (line) => {
       case "rm":
         removeFile(data.join(""));
         break;
+      case "os":
+        systemSwitcher(data.join(""));
+        break;
+      case "hash":
+        hashFile(data.join(""));
+        break;
+      case "compress":
+        compressFile(data);
+        break;
+      case "decompress":
+        decompressFile(data);
+        break;
+      case ".exit":
+        process.exit();
+        break;
     }
-
-    messages.currentDirectory();
   } else {
     messages.inputError();
   }
+  messages.currentDirectory();
 };

@@ -1,9 +1,9 @@
 import { operationError } from "./messages.js";
 
 export const changeFolder = (folder) => {
-  console.log(folder);
   try {
-    process.chdir(folder);
+    const correctFolder = folder.replace("_", " ");
+    process.chdir(correctFolder);
   } catch {
     operationError();
   }
